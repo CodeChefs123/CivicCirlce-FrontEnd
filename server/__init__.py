@@ -3,6 +3,8 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import base64
+import smtplib
+from email.mime.text import MIMEText
 
 """
 This module contains all the imports, initial configurations, and other main settings for the server.

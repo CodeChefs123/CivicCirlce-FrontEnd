@@ -17,9 +17,46 @@ class Home:
             json={
                 "email": email,
                 "password": password,
-                "photo": base64.b64encode(photo_byte_array).decode("utf-8"),
+                "photo": photo_byte_array,
                 "phoneNumber": phone_number,
                 "name": name,
+            },
+        )
+        return response
+
+    @staticmethod
+    def sign_up_organization(
+        name,
+        email,
+        password,
+        photo_byte_array,
+        certification_registration_byte_array,
+        annual_report_byte_array,
+        list_of_board_members_byte_array,
+        phone_number,
+    ):
+        response = requests.post(
+            "http://localhost:3000/auth/org/signup",
+            json={
+                "email": email,
+                "password": password,
+                "photo": photo_byte_array,
+                "phoneNumber": phone_number,
+                "name": name,
+                "certificateRegistrationByte8Array": certification_registration_byte_array,
+                "annualReportByte8Array": annual_report_byte_array,
+                "listBoardMembersByte8Array": list_of_board_members_byte_array,
+            },
+        )
+        return response
+
+    @staticmethod
+    def login(email, password):
+        response = requests.post(
+            "http://localhost:3000/auth/login",
+            json={
+                "email": email,
+                "password": password,
             },
         )
         return response

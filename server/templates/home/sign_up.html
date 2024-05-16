@@ -75,6 +75,7 @@
     id="organizationForm"
     class="hidden"
     method="post"
+    action="/sign/up/organization"
     enctype="multipart/form-data"
   >
     <!-- Organization form fields -->
@@ -99,6 +100,10 @@
       />
     </div>
     <div class="mb-4">
+      <label for="name" class="form-label" name="name">Name</label>
+      <input type="text" id="name" class="form-control" name="name" required />
+    </div>
+    <div class="mb-4">
       <label for="orgPhone" class="form-label">Phone Number</label>
       <input
         type="tel"
@@ -115,6 +120,7 @@
         id="orgPhoto"
         class="form-control"
         accept="image/*"
+        name="photo"
         required
       />
     </div>
@@ -150,9 +156,6 @@
         required
       />
     </div>
-    <!-- Add more fields as needed -->
-
-    <!-- Submit button -->
     <button type="submit" class="btn btn-primary">Sign Up</button>
   </form>
 </div>
