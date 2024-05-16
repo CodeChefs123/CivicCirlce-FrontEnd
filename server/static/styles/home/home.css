@@ -1,0 +1,68 @@
+/* Define color palette */
+:root {
+    --primary-color: #ff6384;
+    --secondary-color: #36a2eb;
+    --tertiary-color: #ffce56;
+    --background-color: #f3f3f3;
+  }
+  
+  /* Global Styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: #333;
+  }
+  
+  a {
+    color: var(--primary-color);
+  }
+  
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
+  }
+  
+  /* Button Styles */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+  }
+  
+  /* Card Styles */
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Call to Action Section */
+  .cta-section {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  /* Testimonials */
+  .testimonial {
+    background-color: var(--tertiary-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  

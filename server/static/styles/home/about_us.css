@@ -1,0 +1,25 @@
+/* Custom CSS for the About Us page */
+
+/* Animations */
+.fade-in {
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover effect on team member cards */
+.team-member {
+  transition: transform 0.3s ease;
+}
+
+.team-member.hovered {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
