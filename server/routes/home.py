@@ -96,7 +96,7 @@ def sign_up_organization():
     )
     print(response)
     email_details = response["response"][-1]
-    send_email(email_details[1], email_details[0], email_details[2])
+    # send_email(email_details[1], email_details[0], email_details[2])
     print(response["response"])
     session["email"] = email
     session["password"] = encode(password)
@@ -115,8 +115,11 @@ def login():
             password,
         )
         print(response)
+        print(response.json())
         flash(response, "success")
         return redirect("/login")
     return render_template(
-        "/home/login.html", email=session["email"], password=decode(session["password"])
+        "/home/login.html",
+        email=session.get("email") if session.get("email") else "",
+        password=decode(session.get("password")),
     )

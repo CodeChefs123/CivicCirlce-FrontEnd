@@ -15,6 +15,8 @@ def decode(message: str) -> bytes:
     """
     Decode string for privacy and encryption.
     """
+    if not message:
+        return ""
     msg_bytes = message.encode("latin-1")
     string_bytes = base64.b64decode(msg_bytes)
     string = string_bytes.decode("latin-1")
