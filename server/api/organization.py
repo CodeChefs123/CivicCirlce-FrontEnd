@@ -4,7 +4,7 @@ from server import *
 class Organization:
     def get_trainings(self, uid):
         response = requests.get(
-            "http://localhost:3000/org/training",
+            f"{BASE_URL}/org/training",
             headers={"uid": uid},
         )
         print(response.json()["response"][1])
@@ -12,7 +12,7 @@ class Organization:
 
     def create_training(self, uid, training_data):
         response = requests.post(
-            "http://localhost:3000/org/training",
+            f"{BASE_URL}/org/training",
             headers={"uid": uid},
             json=training_data,
         ).json()
@@ -24,7 +24,7 @@ class Organization:
         trainingID,
     ):
         response = requests.put(
-            f"http://localhost:3000/org/training/",
+            f"{BASE_URL}/org/training/",
             headers={"uid": uid},
             json={"trainingID": trainingID},
         ).json()
@@ -32,7 +32,7 @@ class Organization:
 
     def delete_training(self, uid, trainingID):
         response = requests.delete(
-            f"http://localhost:3000/org/training/",
+            f"{BASE_URL}/org/training/",
             headers={"uid": uid},
             json={"trainingID": trainingID},
         ).json()
@@ -40,14 +40,14 @@ class Organization:
 
     def get_volunteer_opportunities(self, uid):
         response = requests.get(
-            "http://localhost:3000/org/jobs",
+            f"{BASE_URL}/org/jobs",
             headers={"uid": uid},
         ).json()
         return response["response"]
 
     def create_volunteer_opportunity(self, uid, volunteer_data):
         response = requests.post(
-            "http://localhost:3000/org/jobs",
+            f"{BASE_URL}/org/jobs",
             headers={"uid": uid},
             json=volunteer_data,
         ).json()
@@ -55,7 +55,7 @@ class Organization:
 
     def update_volunteer_opportunity(self, uid, volunteerID, volunteer_data):
         response = requests.put(
-            f"http://localhost:3000/org/jobs/{volunteerID}",
+            f"{BASE_URL}/org/jobs/{volunteerID}",
             headers={"uid": uid},
             json=volunteer_data,
         ).json()
@@ -63,14 +63,14 @@ class Organization:
 
     def delete_volunteer_opportunity(self, uid, volunteerID):
         response = requests.delete(
-            f"http://localhost:3000/org/jobs/{volunteerID}",
+            f"{BASE_URL}/org/jobs/{volunteerID}",
             headers={"uid": uid},
         ).json()
         return response["response"]
 
     def get_applicants(self, uid, opportunityID):
         response = requests.get(
-            f"http://localhost:3000/org/applicants/{opportunityID}",
+            f"{BASE_URL}/org/applicants/{opportunityID}",
             headers={"uid": uid},
         ).json()
         return response["response"]

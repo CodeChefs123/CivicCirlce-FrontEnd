@@ -4,7 +4,7 @@ from server import *
 class Admin:
     def is_user_banned(self):
         response = requests.get(
-            "http://localhost:3000/admin/ban",
+            f"{BASE_URL}/admin/ban",
             json={
                 "banUID": self.user_id,
             },
@@ -22,7 +22,7 @@ class Admin:
             response after banning a user
         """
         response = requests.post(
-            "http://localhost:3000/admin/ban",
+            f"{BASE_URL}/admin/ban",
             headers={"uid": uid},
             json={
                 "banUID": banUID,
@@ -40,7 +40,7 @@ class Admin:
             response after unbanning a user
         """
         response = requests.put(
-            "http://localhost:3000/admin/ban",
+            f"{BASE_URL}/admin/ban",
             headers={"uid": uid},
             json={
                 "banUID": banUID,
@@ -57,13 +57,13 @@ class Admin:
         list
             a list of all users
         """
-        response = requests.get("http://localhost:3000/admin/ban", headers={"uid": uid})
+        response = requests.get(f"{BASE_URL}/admin/ban", headers={"uid": uid})
         response = response.json()
         return response["response"]
 
     def get_membership_requests(self, uid, getAll=False):
         response = requests.get(
-            "http://localhost:3000/admin/membership/requests",
+            f"{BASE_URL}/admin/membership/requests",
             headers={"uid": uid},
             json={"orgID": getAll, "all": getAll},
         ).json()
@@ -80,7 +80,7 @@ class Admin:
         """
 
         response = requests.post(
-            "http://localhost:3000/admin/membership/requests",
+            f"{BASE_URL}/admin/membership/requests",
             headers={"uid": uid},
             json={
                 "orgID": org_id,
@@ -100,7 +100,7 @@ class Admin:
         """
 
         response = requests.put(
-            "http://localhost:3000/admin/membership/requests",
+            f"{BASE_URL}/admin/membership/requests",
             headers={"uid": uid},
             json={"orgID": org_id},
         ).json()

@@ -5,7 +5,7 @@ class Home:
     @staticmethod
     def contact_us(name, email, message):
         response = requests.post(
-            "http://localhost:3000/contact/us",
+            f"{BASE_URL}/contact/us",
             json={"name": name, "email": email, "message": message},
         )
         return response.json()["response"]
@@ -13,7 +13,7 @@ class Home:
     @staticmethod
     def sign_up_volunteer(name, email, password, photo_byte_array, phone_number):
         response = requests.post(
-            "http://localhost:3000/auth/signup",
+            f"{BASE_URL}/auth/signup",
             json={
                 "email": email,
                 "password": password,
@@ -36,7 +36,7 @@ class Home:
         phone_number,
     ):
         response = requests.post(
-            "http://localhost:3000/auth/org/signup",
+            f"{BASE_URL}/auth/org/signup",
             json={
                 "email": email,
                 "password": password,
@@ -53,7 +53,7 @@ class Home:
     @staticmethod
     def login(email, password):
         response = requests.post(
-            "http://localhost:3000/auth/login",
+            f"{BASE_URL}/auth/login",
             json={
                 "email": email,
                 "password": password,
