@@ -1,8 +1,10 @@
+from server import *
+
+
 class Admin:
     def is_user_banned(self):
         response = requests.get(
-            self.url,
-            headers=self.headers,
+            "http://localhost:3000/admin/ban",
             json={
                 "banUID": self.user_id,
             },
@@ -10,7 +12,7 @@ class Admin:
         print(response)
         return response["response"][1]
 
-    def ban_user(self):
+    def ban_user(self, uid, banUID):
         """
         Bans a user.
 
@@ -20,15 +22,15 @@ class Admin:
             response after banning a user
         """
         response = requests.post(
-            self.url,
-            headers=self.headers,
+            "http://localhost:3000/admin/ban",
+            headers={"uid": uid},
             json={
-                "banUID": self.user_id,
+                "banUID": banUID,
             },
         ).json()
         return response["response"][1]
 
-    def un_ban_user(self):
+    def un_ban_user(self, uid, banUID):
         """
         Unbans a user.
 
@@ -38,15 +40,15 @@ class Admin:
             response after unbanning a user
         """
         response = requests.put(
-            self.url,
-            headers=self.headers,
+            "http://localhost:3000/admin/ban",
+            headers={"uid": uid},
             json={
-                "banUID": self.user_id,
+                "banUID": banUID,
             },
         ).json()
         return response["response"][1]
 
-    def get_all_users(self):
+    def get_all_users(self, uid):
         """
         Gets all users.
 
@@ -55,19 +57,19 @@ class Admin:
         list
             a list of all users
         """
-        response = requests.get(BASE_URL + "/api/auth/all", headers=self.headers)
+        response = requests.get("http://localhost:3000/admin/ban", headers={"uid": uid})
         response = response.json()
-        return response["response"][1]
+        return response["response"]
 
-    def get_membership_requests(self, getAll=False):
+    def get_membership_requests(self, uid, getAll=False):
         response = requests.get(
-            self.url,
-            headers=self.headers,
-            json={"all": getAll},
+            "http://localhost:3000/admin/membership/requests",
+            headers={"uid": uid},
+            json={"orgID": getAll, "all": getAll},
         ).json()
-        return response["response"][1]
+        return response
 
-    def approve(self):
+    def approve(self, uid, org_id):
         """
         Sends a POST request and returns the response.
 
@@ -78,23 +80,16 @@ class Admin:
         """
 
         response = requests.post(
-            self.url,
-            headers=self.headers,
+            "http://localhost:3000/admin/membership/requests",
+            headers={"uid": uid},
             json={
-                "registrationCertificateUrl": registrationCertificateUrl,
-                "annualReportUrl": annualReportUrl,
-                "legalDocumentsUrl": legalDocumentsUrl,
-                "name": name,
-                "email": email,
-                "password": password,
-                "description": description,
-                "requestID": self.requestID,
+                "orgID": org_id,
             },
         ).json()
         print(response)
         return response["response"][1]
 
-    def decline(self):
+    def decline(self, uid, org_id):
         """
         Sends a PUT request and returns the response.
 
@@ -105,18 +100,9 @@ class Admin:
         """
 
         response = requests.put(
-            self.url,
-            headers=self.headers,
-            json={
-                "registrationCertificateUrl": registrationCertificateUrl,
-                "annualReportUrl": annualReportUrl,
-                "legalDocumentsUrl": legalDocumentsUrl,
-                "name": name,
-                "email": email,
-                "password": password,
-                "description": description,
-                "requestID": self.requestID,
-            },
+            "http://localhost:3000/admin/membership/requests",
+            headers={"uid": uid},
+            json={"orgID": org_id},
         ).json()
         print(response)
-        return response["response"][1]
+        return response["response"]

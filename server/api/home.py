@@ -48,7 +48,7 @@ class Home:
                 "listBoardMembersByte8Array": list_of_board_members_byte_array,
             },
         )
-        return response
+        return response.json()
 
     @staticmethod
     def login(email, password):

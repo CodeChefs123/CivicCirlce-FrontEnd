@@ -42,3 +42,7 @@ def send_email(subject: str, email_to: str, body: str) -> None:
         server = smtplib.SMTP_SSL("smtp.googlemail.com", 465)
         server.login(EmailAdd, Pass)
         server.sendemail(EmailAdd, email_to, msg.as_string())
+
+
+def login_verification(user_type="admin"):
+    return True if session.get("userType") == user_type else False

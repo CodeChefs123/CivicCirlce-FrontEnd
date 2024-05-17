@@ -111,8 +111,9 @@ def login():
             email,
             password,
         )
+        print(response)
         msg = "Failed Authentication"
-        if not response[0]:
+        if response[0] is False:
             flash(msg, "danger")
             return redirect("/login")
         msg = "Successful Authentication"

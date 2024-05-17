@@ -2,6 +2,17 @@ from server import *
 
 
 # Define route for getting membership requests
+@app.route("/admin", methods=["GET"])
+@app.route("/admin/", methods=["GET"])
+def admin_home():
+    if not login_verification():
+        return redirect("/auth")
+    return render_template(
+        "/admin/home.html",
+    )
+
+
+# Define route for getting membership requests
 @app.route("/admin/requests", methods=["GET"])
 @app.route("/admin/requests/", methods=["GET"])
 def membership_requests():
@@ -11,16 +22,28 @@ def membership_requests():
     """
     if not login_verification():
         return redirect("/auth")
-    # Assuming user UID is stored in session
-    uid = session["uid"]
 
     # Instantiate Membership_Requests class and call the get method
-    membership_requests = Admin(uid).get_membership_requests(True)
-
+    membership_requests = Admin().get_membership_requests(session["uid"], True)[
+        "response"
+    ][1]
+    pending_requests = {}
+    approved_requests = {}
+    for membership_request in membership_requests:
+        if not membership_requests[membership_request]["verified"]:
+            pending_requests[membership_request] = membership_requests[
+                membership_request
+            ]
+        else:
+            approved_requests[membership_request] = membership_requests[
+                membership_request
+            ]
+    print(pending_requests, approved_requests)
     # Render template with pending requests
     return render_template(
-        "/membership_requests/membership_requests.html",
-        pending_requests=membership_requests,
+        "/admin/membership_requests.html",
+        pending_requests=pending_requests,
+        approved_requests=approved_requests,
     )
 
 
@@ -34,23 +57,20 @@ def accept_organization_request(requestID):
     """
     if not login_verification():
         return redirect("/auth")
-    # Assuming user UID is stored in session
-    uid = session["uid"]
 
     # Instantiate Membership_Requests class and call the approve method
-    membership_requests = Admin(uid, requestID)
-    membership_requests.approve()
+    membership_requests = Admin()
+    membership_requests.approve(session["uid"], requestID)
 
     # Flash success message
     flash("Approved Organization!", "success")
-
     # Redirect to membership requests page
-    return redirect("/api/organizations/requests")
+    return redirect("/admin/requests")
 
 
 # Define route for declining membership requests
-@app.route("/admin/requests/decline/<string:requestID>", methods=["PUT"])
-@app.route("/admin/requests/decline/<string:requestID>/", methods=["PUT"])
+@app.route("/admin/requests/decline/<string:requestID>", methods=["POST"])
+@app.route("/admin/requests/decline/<string:requestID>/", methods=["POST"])
 def decline_organization_request(requestID):
     """
     Function to handle PUT requests for declining membership requests.
@@ -58,52 +78,74 @@ def decline_organization_request(requestID):
     """
     if not login_verification():
         return redirect("/auth")
-    # Assuming user UID is stored in session
-    uid = session["uid"]
 
     # Instantiate Membership_Requests class and call the decline method
-    membership_requests = Membership_Requests(uid, requestID)
-    membership_requests.decline()
+    membership_requests = Admin()
+    membership_requests.decline(session["uid"], requestID)
 
     # Flash danger message
     flash("Declined Organization!", "danger")
 
     # Redirect to membership requests page
-    return redirect("/api/organizations/requests")
+    return redirect("/admin/requests")
 
 
-# Define the route for banning users
-@app.route("/ban/<banUID>/", methods=["PUT", "POST", "GET"])
-@app.route("/ban/<banUID>", methods=["PUT", "POST", "GET"])
-def ban_user(banUID):
+# Define the route for banning users (GET request)
+@app.route("/admin/ban/", methods=["GET"])
+@app.route("/admin/ban", methods=["GET"])
+def get_banned_users():
+    """
+    Function to get all banned users or a specific banned user.
+
+
+    Returns:
+        render_template with information about all banned users or a specific banned user.
+    """
+    if not login_verification():
+        return redirect("/auth")
+    # Create a Ban object with the user's session information
+    ban = Admin()
+
+    # Get information about all banned users or a specific banned user
+    result = ban.get_all_users(session["uid"])
+    print(result)
+    return render_template("/admin/ban.html", users=result)
+
+
+# Define the route for banning users (POST/PUT requests)
+@app.route("/admin/ban/<banUID>/", methods=["POST", "GET"])
+@app.route("/admin/ban/<banUID>", methods=["POST", "GET"])
+def handle_ban_request(banUID):
     """
     Function to ban or unban a user.
 
     If the request method is POST, the user is banned.
     If the request method is PUT, the user is unbanned.
-    If the request method is GET, it returns all users.
 
     Returns:
         redirect to "/ban" after banning or unbanning a user.
-        render_template with all users if the request method is GET.
     """
     if not login_verification():
         return redirect("/auth")
     # Create a Ban object with the user's session information
-    ban = Admin(banUID if banUID != "" else None, session["uid"])
+    ban = Admin()
 
     # If the request method is POST, ban the user
     if request.method == "POST":
-        ban.ban_user()
+        ban.ban_user(session["uid"], banUID)
         flash("Banned User", "success")
-        return redirect("/ban")
+        return redirect("/admin/ban")
+    ban.un_ban_user(session["uid"], banUID)
+    flash("Unbanned User", "success")
+    return redirect("/admin/ban")
 
-    # If the request method is PUT, unban the user
-    elif request.method == "PUT":
-        ban.un_ban_user()
-        flash("Unbanned User", "success")
-        return redirect("/ban")
 
-    # If the request method is GET, get all users
-    result = ban.get_all_users()
-    return render_template("/ban/index.html", users=result)
+@app.route("/log/out")
+@app.route("/log/out/")
+def log_out():
+    session.pop("uid")
+    session.pop("userType")
+    session.pop("email")
+    session.pop("password")
+    session.pop("info")
+    return redirect("/")

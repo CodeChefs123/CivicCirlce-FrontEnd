@@ -1,24 +1,72 @@
 {% extends "admin/base.html" %} {% block title %}Membership Requests{% endblock
 %} {% block content %}
-<div class="container">
-  <h1 class="mt-5 mb-4">Membership Requests</h1>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-header bg-primary text-white">Pending Requests</div>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+
+<div class="container mx-auto my-8">
+  <h1 class="text-4xl font-bold mb-8">Membership Requests</h1>
+  <div class="flex flex-wrap -mx-4">
+    <div class="w-full md:w-1/2 px-4 mb-8">
+      <div class="card shadow-lg">
+        <div class="card-header bg-blue-500 text-white">Pending Requests</div>
         <div class="card-body">
           <div class="list-group">
-            <!-- Example of a pending request -->
-            {% for request in pending_requests %}
+            {% for key, request in pending_requests.items() %}
             <div
-              class="list-group-item list-group-item-action flex-column align-items-start"
+              class="list-group-item list-group-item-action flex-column align-items-start mb-4 shadow-sm"
             >
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ request.name }}</h5>
-                <small class="text-muted">{{ request.timestamp }}</small>
+                <small class="text-muted">{{ key }}</small>
               </div>
               <p class="mb-1">Request pending for membership.</p>
-              <small class="text-muted">Awaiting approval</small>
+              <div class="mt-2">
+                <a
+                  href="{{ request.certificateRegistrationUrl }}"
+                  class="text-blue-500 hover:text-blue-700"
+                  target="_blank"
+                  >View Certificate</a
+                >
+                <a
+                  href="{{ request.listBoardMembersUrl }}"
+                  class="text-blue-500 hover:text-blue-700 ml-4"
+                  target="_blank"
+                  >View Board Members</a
+                >
+                <a
+                  href="{{ request.annualReportUrl }}"
+                  class="text-blue-500 hover:text-blue-700 ml-4"
+                  target="_blank"
+                  >View Annual Report</a
+                >
+              </div>
+              <div class="mt-4">
+                <form
+                  action="/admin/requests/accept/{{ key }}"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-success btn-sm mr-2">
+                    Approve
+                  </button>
+                </form>
+                <form
+                  action="/admin/requests/decline/{{ key }}"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    Decline
+                  </button>
+                </form>
+              </div>
+              <small class="text-muted mt-2">Awaiting approval</small>
             </div>
             {% endfor %} {% if pending_requests|length == 0 %}
             <p>No pending requests.</p>
@@ -27,19 +75,18 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-header bg-success text-white">Approved Requests</div>
+    <div class="w-full md:w-1/2 px-4 mb-8">
+      <div class="card shadow-lg">
+        <div class="card-header bg-green-500 text-white">Approved Requests</div>
         <div class="card-body">
           <div class="list-group">
-            <!-- Example of an approved request -->
-            {% for request in approved_requests %}
+            {% for key, request in approved_requests.items() %}
             <div
-              class="list-group-item list-group-item-action flex-column align-items-start"
+              class="list-group-item list-group-item-action flex-column align-items-start mb-4 shadow-sm"
             >
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ request.name }}</h5>
-                <small class="text-muted">{{ request.timestamp }}</small>
+                <small class="text-muted">{{ key }}</small>
               </div>
               <p class="mb-1">Request approved for membership.</p>
               <small class="text-muted">Approved by Admin</small>
@@ -53,4 +100,9 @@
     </div>
   </div>
 </div>
+
+<!-- Optional: Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 {% endblock %}
