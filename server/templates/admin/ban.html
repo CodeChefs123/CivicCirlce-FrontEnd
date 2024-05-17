@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %} {% block head %}
+<title>Ban Users</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <h1 class="mt-5">Ban Users</h1>
+  <div class="row mt-4">
+    <div class="col-md-8">
+      <!-- Display all users here -->
+      {% for user in users %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.username }}</h5>
+          <p class="card-text">{{ user.email }}</p>
+          <form action="/ban/{{ user.uid }}" method="POST">
+            <input type="hidden" name="banUserUID" value="{{ user.uid }}" />
+            <button type="submit" class="btn btn-danger">Ban</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

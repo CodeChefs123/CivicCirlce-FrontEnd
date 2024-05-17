@@ -49,11 +49,10 @@ def sign_up_volunteer():
         .json()
     )
     email_details = response["response"][-1]
-    send_email(email_details[1], email_details[0], email_details[2])
-    print(response["response"])
+    # send_email(email_details[1], email_details[0], email_details[2])
     session["email"] = email
     session["password"] = encode(password)
-    flash(response["response"][0], "success" if response["response"][0] else "fail")
+    flash(response["response"][1], "success" if response["response"][0] else "fail")
     return redirect("/login/")
 
 
@@ -94,10 +93,8 @@ def sign_up_organization():
         list_of_board_members_byte_array,
         phone_number,
     )
-    print(response)
     email_details = response["response"][-1]
     # send_email(email_details[1], email_details[0], email_details[2])
-    print(response["response"])
     session["email"] = email
     session["password"] = encode(password)
     flash(response["response"][0], "success" if response["response"][0] else "fail")
@@ -114,10 +111,19 @@ def login():
             email,
             password,
         )
-        print(response)
-        print(response.json())
-        flash(response, "success")
-        return redirect("/login")
+        msg = "Failed Authentication"
+        if not response[0]:
+            flash(msg, "danger")
+            return redirect("/login")
+        msg = "Successful Authentication"
+        uid = response[2]
+        session["uid"] = uid
+        session["userType"] = response[1]
+        session["email"] = email
+        session["password"] = encode(password)
+        session["info"] = response[3]
+        flash(msg, "success")
+        return redirect(f"/{response[1]}")
     return render_template(
         "/home/login.html",
         email=session.get("email") if session.get("email") else "",

@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %} {% block title %}Membership Requests{% endblock
+%} {% block content %}
+<div class="container">
+  <h1 class="mt-5 mb-4">Membership Requests</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">Pending Requests</div>
+        <div class="card-body">
+          <div class="list-group">
+            <!-- Example of a pending request -->
+            {% for request in pending_requests %}
+            <div
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ request.name }}</h5>
+                <small class="text-muted">{{ request.timestamp }}</small>
+              </div>
+              <p class="mb-1">Request pending for membership.</p>
+              <small class="text-muted">Awaiting approval</small>
+            </div>
+            {% endfor %} {% if pending_requests|length == 0 %}
+            <p>No pending requests.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white">Approved Requests</div>
+        <div class="card-body">
+          <div class="list-group">
+            <!-- Example of an approved request -->
+            {% for request in approved_requests %}
+            <div
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ request.name }}</h5>
+                <small class="text-muted">{{ request.timestamp }}</small>
+              </div>
+              <p class="mb-1">Request approved for membership.</p>
+              <small class="text-muted">Approved by Admin</small>
+            </div>
+            {% endfor %} {% if approved_requests|length == 0 %}
+            <p>No approved requests.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

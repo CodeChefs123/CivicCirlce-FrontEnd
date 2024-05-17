@@ -1,0 +1,13 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+}

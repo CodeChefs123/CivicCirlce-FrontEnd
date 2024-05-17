@@ -59,4 +59,4 @@ class Home:
                 "password": password,
             },
         )
-        return response
+        return response.json()["response"]
