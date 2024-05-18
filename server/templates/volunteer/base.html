@@ -13,8 +13,27 @@
       rel="stylesheet"
     />
     <style>
+      /* Custom Styles */
+      body {
+        background-color: #f8fafc; /* Set background color */
+      }
       .navbar {
         margin-bottom: 20px;
+        background-color: #fff; /* Set navbar background color */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+      }
+      .navbar-brand {
+        font-weight: bold; /* Increase brand font weight */
+      }
+      .navbar-nav .nav-link {
+        color: #333; /* Change link color */
+      }
+      .navbar-nav .nav-link:hover {
+        color: #000; /* Change link hover color */
+      }
+      .container {
+        padding-top: 20px; /* Add space from top */
+        padding-bottom: 20px; /* Add space from bottom */
       }
     </style>
   </head>
@@ -34,7 +53,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ms-auto">
+            <!-- Align links to the right -->
             <li class="nav-item">
               <a class="nav-link" href="/volunteer/opportunities"
                 >Opportunities</a
@@ -45,6 +65,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/volunteer/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/volunteer/cv">CV Profile Fitting</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/volunteer/logout">Logout</a>

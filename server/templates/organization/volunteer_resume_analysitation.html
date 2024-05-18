@@ -1,0 +1,43 @@
+{% extends "/organization/base.html" %} {% block head %}
+<title>Organization - Volunteer Resume Analyze</title>
+<style>
+  /* Custom CSS */
+  .mindstudio-frame {
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    outline: none;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h1 class="card-title text-center mb-4">Volunteer Resume Analyzer</h1>
+      <div id="mindstudioContainer" class="mx-auto">
+        <div
+          class="overflow-hidden"
+          style="max-width: 100%; border-radius: 0.5rem"
+        >
+          <script type="text/javascript">
+            window.MindStudioSettings = {
+              publicToken: "pk0130ffa3f4af49c0d5228e83949e3f82",
+              appId: "517e207b-c867-4f39-bf7f-0bbd4387cd39",
+            };
+          </script>
+          <script src="https://api.youai.ai/v1/embed.js"></script>
+          <iframe
+            id="mindstudio-frame"
+            class="mindstudio-frame"
+            referrerpolicy="origin"
+            title="AI Embed"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

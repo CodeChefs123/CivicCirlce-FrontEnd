@@ -7,7 +7,7 @@ class Volunteer:
             f"{BASE_URL}/org/jobs",
             headers={"uid": uid},
         ).json()
-        return response["response"]
+        return response["response"][1]
 
     def get_trainings(self, uid):
         response = requests.get(
@@ -38,3 +38,12 @@ class Volunteer:
             headers={"uid": uid},
         ).json()
         return response["response"]
+
+    @staticmethod
+    def cv(uid, cv_bye_array):
+        response = requests.post(
+            f"{BASE_URL}/auth/signup",
+            headers={"uid": uid},
+            json={"CV": cv_bye_array},
+        )
+        return response

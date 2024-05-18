@@ -1,9 +1,39 @@
 {% extends "/home/base.html" %} {% block head %}
 <title>Contact Us - CivicCircle</title>
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='styles/home/contact_us.css') }}"
-/>
+<style>
+  /* Custom CSS for Contact Us page */
+  /* Form input and textarea styles */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 0.25rem;
+    transition: border-color 0.3s ease-in-out;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+  }
+
+  /* Submit button styles */
+  button[type="submit"] {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #1d4ed8;
+  }
+</style>
 {% endblock %} {% block body %}
 <div class="container mx-auto px-4">
   <header class="text-center my-12">
@@ -13,69 +43,67 @@
     </p>
   </header>
 
-  <section class="my-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="p-6 bg-white rounded-lg shadow-md">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">
-          Send us a message
-        </h2>
-        <form id="contactForm" class="space-y-4" method="POST">
-          <div>
-            <label for="name" class="block font-medium text-gray-700"
-              >Your Name</label
-            >
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-input mt-1 block w-full"
-              required
-            />
-          </div>
-          <div>
-            <label for="email" class="block font-medium text-gray-700"
-              >Your Email</label
-            >
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-input mt-1 block w-full"
-              required
-            />
-          </div>
-          <div>
-            <label for="message" class="block font-medium text-gray-700"
-              >Message</label
-            >
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              class="form-textarea mt-1 block w-full"
-              required
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-200"
+  <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="p-6 bg-white rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">
+        Send us a message
+      </h2>
+      <form id="contactForm" class="space-y-4">
+        <div>
+          <label for="name" class="block font-medium text-gray-700"
+            >Your Name</label
           >
-            Submit
-          </button>
-        </form>
-      </div>
-      <div class="p-6 bg-blue-100 rounded-lg shadow-md">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">
-          Contact Information
-        </h2>
-        <p class="text-gray-700">
-          <strong>Email:</strong> contact@civiccircle.com
-        </p>
-        <p class="text-gray-700"><strong>Phone:</strong> +1 (123) 456-7890</p>
-        <p class="text-gray-700">
-          <strong>Address:</strong> 123 Main St, City, State, Zip Code
-        </p>
-      </div>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-input mt-1"
+            required
+          />
+        </div>
+        <div>
+          <label for="email" class="block font-medium text-gray-700"
+            >Your Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input mt-1"
+            required
+          />
+        </div>
+        <div>
+          <label for="message" class="block font-medium text-gray-700"
+            >Message</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            class="form-textarea mt-1"
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition-colors duration-200"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div class="p-6 bg-blue-100 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">
+        Contact Information
+      </h2>
+      <p class="text-gray-700">
+        <strong>Email:</strong> contact@civiccircle.com
+      </p>
+      <p class="text-gray-700"><strong>Phone:</strong> +1 (123) 456-7890</p>
+      <p class="text-gray-700">
+        <strong>Address:</strong> 123 Main St, City, State, Zip Code
+      </p>
     </div>
   </section>
 </div>

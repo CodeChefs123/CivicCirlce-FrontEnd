@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>500 - Internal Server Error</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('styles',filename='/errors/500.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="display-4 text-danger">500 - Internal Server Error</h1>
+  <p class="lead">Oops! Something went wrong on our end.</p>
+  <img src="{{ link }}" alt="500 Error Image" class="img-fluid rounded mx-auto d-block mt-5" style="max-width: 500px;">
+</div>
+{% endblock %}

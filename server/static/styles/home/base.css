@@ -1,26 +1,83 @@
 /* Add custom styles here */
-      /* Navbar */
-      .navbar {
-        background-color: #2b6cb0; /* Use blue from the color palette */
-      }
+/* Navbar */
+.navbar {
+  background-color: #2b6cb0;
+  /* Use blue from the color palette */
+}
 
-      /* Navbar brand */
-      .navbar-brand {
-        color: #f9fafb; /* Use white from the color palette */
-      }
+/* Navbar brand */
+.navbar-brand {
+  color: #f9fafb;
+  /* Use white from the color palette */
+}
 
-      /* Navbar links */
-      .navbar-nav .nav-link {
-        color: #f9fafb; /* Use white from the color palette */
-      }
+/* Navbar links */
+.navbar-nav .nav-link {
+  color: #f9fafb;
+  /* Use white from the color palette */
+}
 
-      /* Buttons */
-      .btn-outline-success {
-        color: #2b6cb0; /* Use blue from the color palette */
-        border-color: #2b6cb0; /* Use blue from the color palette */
-      }
+/* Buttons */
+.btn-outline-success {
+  color: #2b6cb0;
+  /* Use blue from the color palette */
+  border-color: #2b6cb0;
+  /* Use blue from the color palette */
+}
 
-      /* Footer */
-      footer {
-        background-color: #f9fafb; /* Use white from the color palette */
-      }
+/* Footer */
+footer {
+  background-color: #f9fafb;
+  /* Use white from the color palette */
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.chat.container {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.chat.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat.chat-container {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.chat.chat-container.hidden {
+  display: none;
+}
+
+.chat-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.chat-message:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+.chat-message:nth-child(even) {
+  background-color: #ffffff;
+}

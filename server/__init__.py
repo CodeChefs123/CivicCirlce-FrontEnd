@@ -20,8 +20,8 @@ app.debug = True  # Enable debugging mode
 app.secret_key = "CivicCircle"
 
 # Set the base URL for the app
-# BASE_URL = "http://localhost:3000"  # Uncomment this line if you want to use localhost as the base URL
-BASE_URL = "https://civiccircle-backend.uc.r.appspot.com"  # Comment this line if you want to use localhost as the base URL
+BASE_URL = "http://localhost:3000"  # Uncomment this line if you want to use localhost as the base URL
+# BASE_URL = "https://civiccircle-backend.uc.r.appspot.com"  # Comment this line if you want to use localhost as the base URL
 
 # Set the API key
 API_KEY = "VzruLfssZ17zQzGsVnlH"

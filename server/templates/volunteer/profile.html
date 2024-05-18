@@ -1,13 +1,17 @@
 {% extends "/volunteer/base.html" %} {% block title %}Volunteer Profile{%
 endblock %} {% block content %}
-<div class="mt-5">
-  <h2>Your Profile</h2>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{ profile.name }}</h5>
-      <p class="card-text">Email: {{ profile.email }}</p>
-      <p class="card-text">Country: {{ profile.country }}</p>
-      <p class="card-text">Skills: {{ profile.skills }}</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center mb-4">Your Profile</h2>
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ profile.name }}</h5>
+          <p class="card-text">Email: {{ profile.email }}</p>
+          <p class="card-text">Country: {{ profile.country }}</p>
+          <p class="card-text">Skills: {{ profile.skills }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

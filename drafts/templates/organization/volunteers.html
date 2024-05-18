@@ -1,0 +1,138 @@
+{% extends "organization/base.html" %} {% block head %}
+<title>Organization - Volunteer Opportunities</title>
+{% endblock %} {% block content %}
+<div class="container">
+  <h1 class="mt-5 text-2xl font-bold">Volunteer Opportunities</h1>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <!-- Form to Create New Volunteer Opportunity -->
+      <div class="card mb-4 p-4 shadow-lg">
+        <h2 class="text-xl font-semibold">Create New Volunteer Opportunity</h2>
+        <form action="/organization/volunteers/" method="POST">
+          <div class="mb-3">
+            <label for="volunteerName" class="form-label"
+              >Opportunity Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="volunteerName"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="volunteerCountry" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="volunteerCountry"
+              name="country"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="volunteerApplicants" class="form-label"
+              >Applicants</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="volunteerApplicants"
+              name="applicants"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="volunteerEmployees" class="form-label">Employees</label>
+            <input
+              type="number"
+              class="form-control"
+              id="volunteerEmployees"
+              name="employees"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="skillsCovered" class="form-label">Skills Covered</label>
+            <input
+              id="skillsCovered"
+              name="skillsCovered"
+              placeholder="Type and press Enter to add skills"
+              class="form-control"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="volunteerDescription" class="form-label"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              id="volunteerDescription"
+              name="description"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Create</button>
+        </form>
+      </div>
+
+      <!-- List of Volunteer Opportunities -->
+      <div class="container mx-auto">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          {% for volunteer in volunteer_opportunities %}
+          <div class="bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="px-6 py-4">
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                {{ volunteer_opportunities[volunteer]["title"] }}
+              </h3>
+              <p class="text-gray-600 text-sm">
+                {{ volunteer_opportunities[volunteer]["description"] }}
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-gray-600 text-sm"
+                  >Applicants: {{
+                  volunteer_opportunities[volunteer]["applicants"] }}</span
+                >
+                <span class="text-gray-600 text-sm"
+                  >Employees: {{ volunteer_opportunities[volunteer]["employees"]
+                  }}</span
+                >
+              </div>
+            </div>
+            <div
+              class="px-6 py-4 bg-gray-100 flex justify-between items-center"
+            >
+              <div class="flex space-x-2">
+                <button
+                  type="submit"
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Update
+                </button>
+                <button
+                  type="submit"
+                  class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Delete
+                </button>
+              </div>
+              <span class="text-gray-600 text-sm"
+                >{{ volunteer_opportunities[volunteer]["country"] }}</span
+              >
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var input = document.getElementById("skillsCovered");
+  new Tagify(input);
+</script>
+{% endblock %}

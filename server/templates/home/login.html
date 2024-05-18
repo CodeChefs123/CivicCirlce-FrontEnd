@@ -1,9 +1,53 @@
 {% extends "/home/base.html" %} {% block head %}
 <title>Login - CivicCircle</title>
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='styles/home/login.css') }}"
-/>
+<style>
+  /* Custom CSS for Login page */
+  /* Input styles */
+  input[type="email"],
+  input[type="password"] {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #4a90e2;
+    outline: none;
+  }
+
+  /* Button styles */
+  .btn-blue {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn-blue:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+  }
+
+  .btn-blue:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  /* Forgot password link styles */
+  .forgot-password {
+    color: #2563eb;
+    transition: color 0.3s ease;
+  }
+
+  .forgot-password:hover {
+    color: #1d4ed8;
+  }
+</style>
 {% endblock %} {% block body %}
 <div class="container mx-auto">
   <div class="flex justify-center items-center h-screen">
@@ -42,20 +86,14 @@
       </div>
       <div class="flex items-center justify-between">
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          class="btn-blue focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Sign In
         </button>
-        <a
-          class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-          href="#"
-        >
-          Forgot Password?
-        </a>
+        <a class="forgot-password" href="#"> Forgot Password? </a>
       </div>
     </form>
   </div>
 </div>
-<script src="{{ url_for('static', filename='scripts/home/login.js') }}"></script>
 {% endblock %}

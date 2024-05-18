@@ -1,0 +1,32 @@
+{% extends "/organization/base.html" %} {% block head %}
+<title>Organization - Internal Job Posting</title>
+{% endblock %} {% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-xl mx-auto">
+    <div class="bg-white shadow-md rounded-lg p-8">
+      <h2 class="text-3xl font-bold mb-6 text-center">Internal Job Posting</h2>
+      <div id="mindstudio-frame-container" class="relative">
+        <script type="text/javascript">
+          window.MindStudioSettings = {
+            publicToken: "pk110281a784c9643fa7fbffe7c0e777d2",
+            appId: "925be9b9-0a45-417f-8f40-69b519267d50",
+          };
+        </script>
+        <script src="https://api.youai.ai/v1/embed.js"></script>
+        <iframe
+          id="mindstudio-frame"
+          referrerpolicy="origin"
+          style="
+            width: 100%;
+            height: 600px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+          "
+          title="AI Embed"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

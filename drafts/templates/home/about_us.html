@@ -1,0 +1,74 @@
+{% extends "/home/base.html" %} {% block head %}
+<title>About Us - CivicCircle</title>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/home/about_us.css') }}"
+/>
+{% endblock %} {% block body %}
+<div class="container my-5">
+  <header class="text-center mb-10 fade-in">
+    <h1 class="text-4xl font-bold text-gray-800">About Us</h1>
+    <p class="text-gray-500">
+      Learn more about our mission, our people, and our story.
+    </p>
+  </header>
+
+  <section class="mb-10 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Mission</h2>
+    <p class="text-gray-600 text-lg">
+      Our mission at CivicCircle is to empower communities by connecting
+      volunteers with opportunities for meaningful engagement. We believe in
+      making a difference one project at a time.
+    </p>
+  </section>
+
+  <section class="mb-10 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Team</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Team Members -->
+      <!-- Add animations and hover effects -->
+      <div
+        class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 grow"
+      >
+        <div class="flex justify-center mb-3">
+          <img
+            class="w-24 h-24 rounded-full"
+            src="/path/to/member_photo.jpg"
+            alt="Team member"
+          />
+        </div>
+        <h3 class="text-xl font-medium text-gray-900">Jane Doe</h3>
+        <p class="text-gray-500">CEO</p>
+      </div>
+      <!-- Repeat for other team members -->
+    </div>
+  </section>
+
+  <section class="mb-10 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+    <p class="text-gray-600 text-lg">
+      Since our founding in 2010, CivicCircle has been at the forefront of
+      community service, growing from a small volunteer initiative to a
+      nationwide platform that connects thousands of volunteers with causes they
+      care about.
+    </p>
+  </section>
+
+  <section class="mb-10 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Media Mentions</h2>
+    <ul class="list-disc pl-5 space-y-2">
+      <li class="text-gray-600">
+        Featured in [Magazine Name], a piece highlighting our innovative
+        approach to volunteerism.
+      </li>
+      <li class="text-gray-600">
+        Interviewed on [TV Station], discussing the impact of our programs on
+        local communities.
+      </li>
+      <!-- More media mentions -->
+    </ul>
+  </section>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/home/about_us.js') }}"></script>
+{% endblock %}

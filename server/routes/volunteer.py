@@ -10,15 +10,31 @@ def volunteer_home():
     return render_template("/volunteer/home.html")
 
 
+# Volunteer Home
+@app.route("/volunteer/cv", methods=["POST", "GET"])
+@app.route("/volunteer/cv/", methods=["POST", "GET"])
+def volunteer_cv():
+    if not login_verification("volunteer"):
+        return redirect("/auth")
+    if request.method == "post":
+        cv = request.files["cvFile"]
+        cv_byte_array = [
+            cv.filename.split(".")[-1],
+            base64.b64encode(bytearray(cv.read())).decode("utf-8"),
+        ]
+        response = Volunteer().cv(session["uid"], cv_byte_array)
+    return render_template("/volunteer/cv.html")
+
+
 # Volunteer Opportunities
 @app.route("/volunteer/opportunities")
 @app.route("/volunteer/opportunities/")
 def view_volunteer_opportunities():
     if not login_verification("volunteer"):
         return redirect("/auth")
-
     vol = Volunteer()
     opportunities = vol.get_volunteer_opportunities(session["uid"])
+    print(opportunities)
     return render_template("/volunteer/opportunities.html", opportunities=opportunities)
 
 

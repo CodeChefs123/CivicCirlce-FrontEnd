@@ -1,11 +1,44 @@
 {% extends "/home/base.html" %} {% block head %}
 <title>About Us - CivicCircle</title>
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='styles/home/about_us.css') }}"
-/>
+<style>
+  /* Custom CSS for About Us page */
+  /* Fade-in animation */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Team member card */
+  .team-member {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .team-member:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Grid layout for team members */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+  }
+</style>
 {% endblock %} {% block body %}
-<div class="container my-5">
+<div class="container mx-auto my-5 px-4 md:px-0">
   <header class="text-center mb-10 fade-in">
     <h1 class="text-4xl font-bold text-gray-800">About Us</h1>
     <p class="text-gray-500">
@@ -24,21 +57,20 @@
 
   <section class="mb-10 fade-in">
     <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Team</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="team-grid">
       <!-- Team Members -->
       <!-- Add animations and hover effects -->
-      <div
-        class="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 grow"
-      >
-        <div class="flex justify-center mb-3">
-          <img
-            class="w-24 h-24 rounded-full"
-            src="/path/to/member_photo.jpg"
-            alt="Team member"
-          />
-        </div>
-        <h3 class="text-xl font-medium text-gray-900">Jane Doe</h3>
-        <p class="text-gray-500">CEO</p>
+      <div class="team-member p-6 max-w-xs md:max-w-sm shadow-lg">
+        <h3 class="text-lg md:text-xl font-medium text-gray-900">
+          Neluki Hamangoda
+        </h3>
+        <p class="text-gray-500">Team Lead</p>
+      </div>
+      <div class="team-member p-6 max-w-xs md:max-w-sm shadow-lg">
+        <h3 class="text-lg md:text-xl font-medium text-gray-900">
+          Ranuga Disansa
+        </h3>
+        <p class="text-gray-500">Member</p>
       </div>
       <!-- Repeat for other team members -->
     </div>
@@ -47,28 +79,14 @@
   <section class="mb-10 fade-in">
     <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
     <p class="text-gray-600 text-lg">
-      Since our founding in 2010, CivicCircle has been at the forefront of
+      Since our founding in 2024, CivicCircle has been at the forefront of
       community service, growing from a small volunteer initiative to a
       nationwide platform that connects thousands of volunteers with causes they
       care about.
     </p>
   </section>
-
-  <section class="mb-10 fade-in">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Media Mentions</h2>
-    <ul class="list-disc pl-5 space-y-2">
-      <li class="text-gray-600">
-        Featured in [Magazine Name], a piece highlighting our innovative
-        approach to volunteerism.
-      </li>
-      <li class="text-gray-600">
-        Interviewed on [TV Station], discussing the impact of our programs on
-        local communities.
-      </li>
-      <!-- More media mentions -->
-    </ul>
-  </section>
 </div>
-
-<script src="{{ url_for('static', filename='scripts/home/about_us.js') }}"></script>
+<script>
+  // JavaScript for About Us page
+</script>
 {% endblock %}

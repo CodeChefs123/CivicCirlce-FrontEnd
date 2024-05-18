@@ -140,6 +140,18 @@ def handle_ban_request(banUID):
     return redirect("/admin/ban")
 
 
+@app.route("/admin/social/media")
+@app.route("/admin/social/media/")
+def social_media_caption():
+    return render_template("/admin/social_media.html")
+
+
+@app.route("/admin/blog/writing")
+@app.route("/admin/blog/writing/")
+def admin_blog_writing():
+    return render_template("/admin/blog_writing.html")
+
+
 @app.route("/log/out")
 @app.route("/log/out/")
 def log_out():

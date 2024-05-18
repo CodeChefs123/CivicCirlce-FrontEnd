@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %} {% block head %}
+<title>Blog Writing</title>
+{% endblock %} {% block content %}
+<div class="container-fluid">
+  <div
+    class="row justify-content-center align-items-center"
+    style="height: 80vh"
+  >
+    <div class="col-md-8">
+      <div class="card shadow-lg" style="border-radius: 12px; overflow: hidden">
+        <div id="mindstudioContainer">
+          <script type="text/javascript">
+            window.MindStudioSettings = {
+              publicToken: "pk8f88e1af9eab4bec3181f6710391098f",
+              appId: "e1bd94f9-c24e-4697-abb4-f0234fd4103f",
+            };
+          </script>
+          <script src="https://api.youai.ai/v1/embed.js"></script>
+          <iframe
+            id="mindstudio-frame"
+            referrerpolicy="origin"
+            style="
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+              outline: none;
+            "
+            title="AI Embed"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

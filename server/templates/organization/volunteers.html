@@ -8,7 +8,7 @@
       <!-- Form to Create New Volunteer Opportunity -->
       <div class="card mb-4 p-4 shadow-lg">
         <h2 class="text-xl font-semibold">Create New Volunteer Opportunity</h2>
-        <form action="/organization/volunteers/create" method="POST">
+        <form action="/organization/volunteers/" method="POST">
           <div class="mb-3">
             <label for="volunteerName" class="form-label"
               >Opportunity Name</label
@@ -79,27 +79,57 @@
       </div>
 
       <!-- List of Volunteer Opportunities -->
-      {% for volunteer in volunteer_opportunities %}
-      <div class="card mb-3 p-4 shadow-lg">
-        <div class="card-body">
-          <h5 class="card-title">{{ volunteer.name }}</h5>
-          <p class="card-text">{{ volunteer.description }}</p>
-          <form
-            action="/organization/volunteers/update/{{ volunteer.jobID }}"
-            method="POST"
-            class="mb-2"
-          >
-            <button type="submit" class="btn btn-primary">Update</button>
-          </form>
-          <form
-            action="/organization/volunteers/delete/{{ volunteer.jobID }}"
-            method="POST"
-          >
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
+      <div class="container mx-auto">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
+          {% for volunteer in volunteer_opportunities %}
+          <div class="bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="px-6 py-4">
+              <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                {{ volunteer_opportunities[volunteer]["title"] }}
+              </h3>
+              <p class="text-gray-600 text-sm">
+                {{ volunteer_opportunities[volunteer]["description"] }}
+              </p>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-gray-600 text-sm"
+                  >Applicants: {{
+                  volunteer_opportunities[volunteer]["applicants"] }}</span
+                >
+                <span class="text-gray-600 text-sm"
+                  >Employees: {{ volunteer_opportunities[volunteer]["employees"]
+                  }}</span
+                >
+              </div>
+            </div>
+            <div
+              class="px-6 py-4 bg-gray-100 flex justify-between items-center"
+            >
+              <div class="flex space-x-2">
+                <a href="/organization/trainings/update/{{volunteer}}"
+                  ><button
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Update
+                  </button></a
+                >
+                <a href="/organization/trainings/delete/{{volunteer}}">
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    Delete
+                  </button></a
+                >
+              </div>
+              <span class="text-gray-600 text-sm"
+                >{{ volunteer_opportunities[volunteer]["country"] }}</span
+              >
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
     </div>
   </div>
 </div>

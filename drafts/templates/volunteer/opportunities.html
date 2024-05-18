@@ -1,0 +1,46 @@
+{% extends "volunteer/base.html" %} {% block title %}Volunteer Opportunities{%
+endblock %} {% block content %}
+<div class="mt-5">
+  <h2>Available Volunteer Opportunities</h2>
+  <div class="row">
+    {% for opportunity in opportunities %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ opportunity['name'] }}</h5>
+          <p class="card-text">{{ opportunity['description'] }}</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Country: {{ opportunity['country'] }}</small
+            >
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Applicants: {{ opportunity['applicants'] }}</small
+            >
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Employees: {{ opportunity['employees'] }}</small
+            >
+          </p>
+          {% if opportunity['skillsCovered'] %}
+          <p class="card-text">
+            <small class="text-muted"
+              >Skills Covered: {{ opportunity['skillsCovered'] }}</small
+            >
+          </p>
+          {% endif %}
+          <form
+            action="/volunteer/opportunities/apply/{{ opportunity.id }}"
+            method="POST"
+          >
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
