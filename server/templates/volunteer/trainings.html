@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Volunteer Trainings{% endblock %} {%
+block content %}
+<div class="mt-5">
+  <h2>Available Trainings</h2>
+  <div class="row">
+    {% for training in trainings %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ training.title }}</h5>
+          <p class="card-text">{{ training.description }}</p>
+          <p class="card-text">
+            <small class="text-muted">Level: {{ training.level }}</small>
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Skills Covered: {{ training.skillsCovered }}</small
+            >
+          </p>
+          <form
+            action="/volunteer/trainings/apply/{{ training.id }}"
+            method="POST"
+          >
+            <button type="submit" class="btn btn-primary">Apply</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
