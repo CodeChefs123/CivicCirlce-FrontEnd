@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import *
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry

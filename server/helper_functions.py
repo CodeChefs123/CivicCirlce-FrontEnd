@@ -2,7 +2,6 @@ from server import *
 import base64
 import smtplib
 from email.mime.text import MIMEText
-from server import session
 
 
 def encode(message: str) -> str:
