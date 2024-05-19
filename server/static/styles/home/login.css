@@ -1,46 +1,44 @@
-/* Custom CSS for the login page */
-/* Add your custom styles here */
-
-/* Center the login form */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Style the input fields */
-  input[type="email"],
+input[type="email"],
   input[type="password"] {
-    width: 100%;
-    padding: 10px;
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Style the sign-in button */
-  button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    transition: border-color 0.3s ease;
   }
-  
-  button:hover {
-    background-color: #0056b3;
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #4a90e2;
+    outline: none;
   }
-  
-  /* Style the forgot password link */
-  a {
-    color: #007bff;
-    text-decoration: none;
+
+  /* Button styles */
+  .btn-blue {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  
-  a:hover {
-    text-decoration: underline;
+
+  .btn-blue:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
   }
-  
+
+  .btn-blue:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  }
+
+  /* Forgot password link styles */
+  .forgot-password {
+    color: #2563eb;
+    transition: color 0.3s ease;
+  }
+
+  .forgot-password:hover {
+    color: #1d4ed8;
+  }

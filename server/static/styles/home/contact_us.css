@@ -1,66 +1,32 @@
-/* contact_us.css */
+  /* Custom CSS for Contact Us page */
+  /* Form input and textarea styles */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 0.25rem;
+    transition: border-color 0.3s ease-in-out;
+  }
 
-/* Style the header section */
-header {
-    margin-bottom: 2rem;
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #2563eb;
   }
-  
-  /* Style the form */
-  form {
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  /* Style form inputs */
-  .form-input {
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ccc;
-    width: 100%;
-  }
-  
-  /* Style form textarea */
-  .form-textarea {
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ccc;
-    width: 100%;
-  }
-  
-  /* Style the submit button */
+
+  /* Submit button styles */
   button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
     border-radius: 0.25rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-in-out;
   }
-  
+
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #1d4ed8;
   }
-  
-  /* Style the contact information section */
-  section {
-    margin-top: 2rem;
-  }
-  
-  /* Style the contact information cards */
-  section .p-6 {
-    padding: 1.5rem;
-  }
-  
-  /* Style the contact information card titles */
-  section h2 {
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  /* Style the contact information paragraphs */
-  section p {
-    margin-bottom: 0.75rem;
-    color: #555;
-  }
-  

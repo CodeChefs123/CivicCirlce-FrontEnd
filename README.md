@@ -4,29 +4,119 @@ Building Community, Empowering Volunteers. This repository houses the user inter
 
 ## Table of Contents
 
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Server](#running-the-server)
-- [Usage](#usage)
-- [Routes](#routes)
-- [Templates](#templates)
-- [Static Files](#static-files)
-- [Contributing](#contributing)
-- [License](#license)
+- [CivicCircle FrontEnd](#civiccircle-frontend)
+  - [Table of Contents](#table-of-contents)
+  - [Project Structure](#project-structure)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Running the Server](#running-the-server)
+  - [Usage](#usage)
+  - [Routes](#routes)
+    - [Organization Routes](#organization-routes)
+    - [Volunteer Routes](#volunteer-routes)
+    - [Authentication Routes](#authentication-routes)
+  - [Templates](#templates)
+  - [Static Files](#static-files)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Project Structure
 
 ```
 /home/ranuga/Programming/Projects/All/CivicCircle/FrontEnd/
-├── .history
-├── server
-├── undefined
 ├── .gitignore
-├── app.py
 ├── LICENSE
 ├── README.md
+├── app.py
 ├── requirements.txt
+├── server
+│   ├── __init__.py
+│   ├── api
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── home.py
+│   │   ├── organization.py
+│   │   ├── volunteer.py
+│   ├── helper_functions.py
+│   ├── routes
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── home.py
+│   │   ├── organization.py
+│   │   ├── volunteer.py
+│   ├── static
+│   │   ├── images
+│   │   │   └── logo.jpg
+│   │   ├── scripts
+│   │   │   ├── home
+│   │   │   │   ├── about_us.js
+│   │   │   │   ├── base.js
+│   │   │   │   ├── contact_us.js
+│   │   │   │   ├── login.js
+│   │   │   │   └── sign_up.js
+│   │   │   ├── organization
+│   │   │   │   ├── trainings.js
+│   │   │   │   └── volunteers.js
+│   │   ├── styles
+│   │   │   ├── admin
+│   │   │   │   └── base.css
+│   │   │   ├── errors
+│   │   │   │   ├── 404.css
+│   │   │   │   └── 500.css
+│   │   │   ├── home
+│   │   │   │   ├── about_us.css
+│   │   │   │   ├── base.css
+│   │   │   │   ├── contact_us.css
+│   │   │   │   ├── home.css
+│   │   │   │   ├── login.css
+│   │   │   ├── organization
+│   │   │   │   ├── applicants.css
+│   │   │   │   ├── base.css
+│   │   │   │   ├── trainings.css
+│   │   │   │   └── volunteer_resume_analysitation.css
+│   │   │   ├── volunteer
+│   │   │   │   └── base.css
+│   ├── templates
+│   │   ├── admin
+│   │   │   ├── admin
+│   │   │   │   ├── ban.html
+│   │   │   │   ├── base.html
+│   │   │   │   ├── blog_writing.html
+│   │   │   │   ├── home.html
+│   │   │   │   ├── membership_requests.html
+│   │   │   │   └── social_media.html
+│   │   │   ├── ban.html
+│   │   │   ├── base.html
+│   │   │   ├── blog_writing.html
+│   │   │   ├── home.html
+│   │   │   ├── membership_requests.html
+│   │   │   ├── social_media.html
+│   │   ├── errors
+│   │   │   ├── 404.html
+│   │   │   └── 500.html
+│   │   ├── home
+│   │   │   ├── about_us.html
+│   │   │   ├── base.html
+│   │   │   ├── contact_us.html
+│   │   │   ├── home.html
+│   │   │   ├── login.html
+│   │   │   └── sign_up.html
+│   │   ├── organization
+│   │   │   ├── applicants.html
+│   │   │   ├── base.html
+│   │   │   ├── campaign_budget_optimization.html
+│   │   │   ├── home.html
+│   │   │   ├── internal_job_posting.html
+│   │   │   ├── trainings.html
+│   │   │   ├── volunteer_resume_analysitation.html
+│   │   │   └── volunteers.html
+│   │   ├── volunteer
+│   │   │   ├── base.html
+│   │   │   ├── cv.html
+│   │   │   ├── home.html
+│   │   │   ├── opportunities.html
+│   │   │   ├── profile.html
+│   │   │   └── trainings.html
 └── test.json
 ```
 
@@ -37,8 +127,8 @@ To set up the project locally, follow these steps:
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/yourusername/CivicCircle-FrontEnd.git
-   cd CivicCircle-FrontEnd
+   git clone https://github.com/CivicCircle/FrontEnd.git
+   cd FrontEnd
    ```
 
 2. **Create a virtual environment:**
@@ -166,9 +256,12 @@ The frontend provides an interface for managing organizations, volunteers, train
 
 ## Templates
 
-The HTML templates are located in the `templates` directory. These templates use Jinja2 syntax for dynamic content rendering.
+The HTML templates are located in the `server/templates` directory. These templates use Jinja2 syntax for dynamic content rendering.
 
-- **Base Template:** `base.html`
+- **Base Template:** `
+
+base.html`
+
 - **Organization Home Template:** `organization/home.html`
 - **Trainings Template:** `organization/trainings.html`
 - **Volunteer Opportunities Template:** `organization/volunteers.html`
@@ -176,11 +269,11 @@ The HTML templates are located in the `templates` directory. These templates use
 
 ## Static Files
 
-Static files (CSS, JS, images) are located in the `static` directory. The project uses both Bootstrap and Tailwind CSS for styling.
+Static files (CSS, JS, images) are located in the `server/static` directory. The project uses both Bootstrap and Tailwind CSS for styling.
 
-- **CSS Files:** `static/css/`
-- **JavaScript Files:** `static/js/`
-- **Images:** `static/images/`
+- **CSS Files:** `server/static/styles/`
+- **JavaScript Files:** `server/static/scripts/`
+- **Images:** `server/static/images/`
 
 ## Contributing
 
@@ -194,7 +287,3 @@ Contributions are welcome! Please follow these steps to contribute:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-This README.md file provides a detailed overview of your project, including installation instructions, usage guidelines, and details on the routes and templates used in the project. Adjust the content as necessary to fit your specific project needs.

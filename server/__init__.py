@@ -1,16 +1,12 @@
-from flask import *
+from flask import Flask
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-import base64
-import smtplib
 from email.mime.text import MIMEText
 
 """
 This module contains all the imports, initial configurations, and other main settings for the server.
 """
-
-# Import necessary modules
 
 # Initialize Flask app
 app = Flask(__name__, static_url_path="/static")
@@ -20,8 +16,8 @@ app.debug = True  # Enable debugging mode
 app.secret_key = "CivicCircle"
 
 # Set the base URL for the app
-BASE_URL = "http://localhost:3000"  # Uncomment this line if you want to use localhost as the base URL
-# BASE_URL = "https://civiccircle-backend.uc.r.appspot.com"  # Comment this line if you want to use localhost as the base URL
+BASE_URL = "https://civiccircle-backend.uc.r.appspot.com"  # Comment this line if you want to use localhost as the base URL
+# BASE_URL = "http://localhost:3000"  # Uncomment this line if you want to use localhost as the base URL
 
 # Set the API key
 API_KEY = "VzruLfssZ17zQzGsVnlH"
@@ -37,7 +33,7 @@ adapter = HTTPAdapter(max_retries=retry)
 req_session.mount("http://", adapter)
 req_session.mount("https://", adapter)
 
-# Import necessary modules from server package
+
 from server.helper_functions import *
 from server.api import *
 from server.routes import *

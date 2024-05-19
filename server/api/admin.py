@@ -3,23 +3,34 @@ from server import *
 
 class Admin:
     def is_user_banned(self):
+        """
+        Checks if a user is banned.
+        Returns
+        -------
+        bool
+            True if the user is banned, False otherwise.
+        """
         response = requests.get(
             f"{BASE_URL}/admin/ban",
             json={
                 "banUID": self.user_id,
             },
         ).json()
-        print(response)
         return response["response"][1]
 
     def ban_user(self, uid, banUID):
         """
         Bans a user.
-
+        Parameters
+        ----------
+        uid : str
+            The user ID of the admin.
+        banUID : str
+            The user ID of the user to be banned.
         Returns
         -------
         str
-            response after banning a user
+            Response after banning a user.
         """
         response = requests.post(
             f"{BASE_URL}/admin/ban",
@@ -33,11 +44,16 @@ class Admin:
     def un_ban_user(self, uid, banUID):
         """
         Unbans a user.
-
+        Parameters
+        ----------
+        uid : str
+            The user ID of the admin.
+        banUID : str
+            The user ID of the user to be unbanned.
         Returns
         -------
         str
-            response after unbanning a user
+            Response after unbanning a user.
         """
         response = requests.put(
             f"{BASE_URL}/admin/ban",
@@ -51,17 +67,33 @@ class Admin:
     def get_all_users(self, uid):
         """
         Gets all users.
-
+        Parameters
+        ----------
+        uid : str
+            The user ID of the admin.
         Returns
         -------
         list
-            a list of all users
+            A list of all users.
         """
         response = requests.get(f"{BASE_URL}/admin/ban", headers={"uid": uid})
         response = response.json()
         return response["response"]
 
     def get_membership_requests(self, uid, getAll=False):
+        """
+        Gets membership requests.
+        Parameters
+        ----------
+        uid : str
+            The user ID of the admin.
+        getAll : bool, optional
+            If True, gets all membership requests. If False, gets only pending requests. Default is False.
+        Returns
+        -------
+        dict
+            The response of the GET request.
+        """
         response = requests.get(
             f"{BASE_URL}/admin/membership/requests",
             headers={"uid": uid},
@@ -71,14 +103,18 @@ class Admin:
 
     def approve(self, uid, org_id):
         """
-        Sends a POST request and returns the response.
-
+        Approves a membership request.
+        Parameters
+        ----------
+        uid : str
+            The user ID of the admin.
+        org_id : str
+            The organization ID of the membership request to be approved.
         Returns
         -------
-            dict
-                response of the POST request
+        str
+            Response after approving the membership request.
         """
-
         response = requests.post(
             f"{BASE_URL}/admin/membership/requests",
             headers={"uid": uid},
@@ -86,23 +122,25 @@ class Admin:
                 "orgID": org_id,
             },
         ).json()
-        print(response)
         return response["response"][1]
 
     def decline(self, uid, org_id):
         """
-        Sends a PUT request and returns the response.
-
+        Declines a membership request.
+        Parameters
+        ----------
+        uid : str
+            The user ID of the admin.
+        org_id : str
+            The organization ID of the membership request to be declined.
         Returns
         -------
-            dict
-                response of the PUT request
+        dict
+            Response after declining the membership request.
         """
-
         response = requests.put(
             f"{BASE_URL}/admin/membership/requests",
             headers={"uid": uid},
             json={"orgID": org_id},
         ).json()
-        print(response)
         return response["response"]

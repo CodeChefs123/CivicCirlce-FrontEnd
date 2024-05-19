@@ -1,39 +1,9 @@
 {% extends "/home/base.html" %} {% block head %}
 <title>Contact Us - CivicCircle</title>
-<style>
-  /* Custom CSS for Contact Us page */
-  /* Form input and textarea styles */
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    border: 1px solid #e5e7eb;
-    padding: 0.5rem;
-    width: 100%;
-    border-radius: 0.25rem;
-    transition: border-color 0.3s ease-in-out;
-  }
-
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-  }
-
-  /* Submit button styles */
-  button[type="submit"] {
-    background-color: #2563eb;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  button[type="submit"]:hover {
-    background-color: #1d4ed8;
-  }
-</style>
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='styles/home/contact_us.css') }}"
+/>
 {% endblock %} {% block body %}
 <div class="container mx-auto px-4">
   <header class="text-center my-12">

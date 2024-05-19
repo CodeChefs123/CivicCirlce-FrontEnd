@@ -1,20 +1,30 @@
 from server import *
+from typing import Tuple, Any
 
 
 @app.route("/")
-def home():
+def home() -> Any:
+    """
+    Renders the home page template.
+    """
     return render_template("/home/home.html")
 
 
 @app.route("/about/us")
 @app.route("/about/us/")
-def about_us():
+def about_us() -> Any:
+    """
+    Renders the about us page template.
+    """
     return render_template("/home/about_us.html")
 
 
 @app.route("/contact/us", methods=["POST", "GET"])
 @app.route("/contact/us/", methods=["POST", "GET"])
-def contact_us():
+def contact_us() -> Any:
+    """
+    Handles the contact us form submission and renders the contact us page template.
+    """
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
@@ -27,13 +37,19 @@ def contact_us():
 
 @app.route("/sign/up", methods=["GET"])
 @app.route("/sign/up/", methods=["GET"])
-def sign_up_render():
+def sign_up_render() -> Any:
+    """
+    Renders the sign up page template.
+    """
     return render_template("/home/sign_up.html")
 
 
 @app.route("/sign/up/volunteer/", methods=["POST"])
 @app.route("/sign/up/volunteer", methods=["POST"])
-def sign_up_volunteer():
+def sign_up_volunteer() -> Any:
+    """
+    Handles the sign up form submission for volunteers.
+    """
     name = request.form["name"]
     email = request.form["email"]
     password = request.form["password"]
@@ -58,7 +74,10 @@ def sign_up_volunteer():
 
 @app.route("/sign/up/organization/", methods=["POST"])
 @app.route("/sign/up/organization", methods=["POST"])
-def sign_up_organization():
+def sign_up_organization() -> Any:
+    """
+    Handles the sign up form submission for organizations.
+    """
     name = request.form["name"]
     email = request.form["email"]
     password = request.form["password"]
@@ -103,7 +122,10 @@ def sign_up_organization():
 
 @app.route("/login", methods=["POST", "GET"])
 @app.route("/login/", methods=["POST", "GET"])
-def login():
+def login() -> Any:
+    """
+    Handles the login form submission and renders the login page template.
+    """
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
@@ -111,7 +133,6 @@ def login():
             email,
             password,
         )
-        print(response)
         msg = "Failed Authentication"
         if response[0] is False:
             flash(msg, "danger")
@@ -130,3 +151,6 @@ def login():
         email=session.get("email") if session.get("email") else "",
         password=decode(session.get("password")),
     )
+
+
+# Add more routes and functions as needed

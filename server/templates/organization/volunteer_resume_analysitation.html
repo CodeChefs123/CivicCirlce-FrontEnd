@@ -1,16 +1,9 @@
 {% extends "/organization/base.html" %} {% block head %}
 <title>Organization - Volunteer Resume Analyze</title>
-<style>
-  /* Custom CSS */
-  .mindstudio-frame {
-    width: 100%;
-    max-width: 900px;
-    height: 600px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    outline: none;
-  }
-</style>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/organization/volunteer_resume_analysitation.css') }}"
+/>
 {% endblock %} {% block content %}
 <div class="container mt-5">
   <div class="card shadow-lg">

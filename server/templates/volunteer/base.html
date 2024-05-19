@@ -12,30 +12,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
       rel="stylesheet"
     />
-    <style>
-      /* Custom Styles */
-      body {
-        background-color: #f8fafc; /* Set background color */
-      }
-      .navbar {
-        margin-bottom: 20px;
-        background-color: #fff; /* Set navbar background color */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
-      }
-      .navbar-brand {
-        font-weight: bold; /* Increase brand font weight */
-      }
-      .navbar-nav .nav-link {
-        color: #333; /* Change link color */
-      }
-      .navbar-nav .nav-link:hover {
-        color: #000; /* Change link hover color */
-      }
-      .container {
-        padding-top: 20px; /* Add space from top */
-        padding-bottom: 20px; /* Add space from bottom */
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/volubteer/base.css') }}"
+    />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

@@ -1,30 +1,9 @@
 {% extends "organization/base.html" %} {% block head %}
 <title>Organization - Applicants</title>
-<style>
-  /* Custom CSS for Applicants page */
-  .card {
-    border-radius: 0.5rem;
-    border: 1px solid #e5e7eb;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .card:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-text {
-    font-size: 1rem;
-    color: #6b7280;
-    margin-bottom: 0.25rem;
-  }
-</style>
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='styles/organization/applicants.css') }}"
+/>
 {% endblock %} {% block content %}
 <div class="container">
   <h1 class="mt-5 text-3xl font-bold">Applicants for {{ opportunity_name }}</h1>

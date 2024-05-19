@@ -1,53 +1,9 @@
 {% extends "/home/base.html" %} {% block head %}
 <title>Login - CivicCircle</title>
-<style>
-  /* Custom CSS for Login page */
-  /* Input styles */
-  input[type="email"],
-  input[type="password"] {
-    background-color: #f7fafc;
-    border: 1px solid #e2e8f0;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    transition: border-color 0.3s ease;
-  }
-
-  input[type="email"]:focus,
-  input[type="password"]:focus {
-    border-color: #4a90e2;
-    outline: none;
-  }
-
-  /* Button styles */
-  .btn-blue {
-    background-color: #2563eb;
-    color: #ffffff;
-    padding: 0.75rem 1rem;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  .btn-blue:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-1px);
-  }
-
-  .btn-blue:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-  }
-
-  /* Forgot password link styles */
-  .forgot-password {
-    color: #2563eb;
-    transition: color 0.3s ease;
-  }
-
-  .forgot-password:hover {
-    color: #1d4ed8;
-  }
-</style>
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='styles/home/login.css') }}"
+/>
 {% endblock %} {% block body %}
 <div class="container mx-auto">
   <div class="flex justify-center items-center h-screen">

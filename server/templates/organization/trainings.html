@@ -1,37 +1,9 @@
 {% extends "organization/base.html" %} {% block head %}
 <title>Organization - Trainings</title>
-<style>
-  .card {
-    border-radius: 0.5rem;
-  }
-  .form-label {
-    font-weight: bold;
-  }
-  .btn-success {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .btn-success:hover {
-    background-color: #45a049;
-  }
-  .btn-danger {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .btn-danger:hover {
-    background-color: #d32f2f;
-  }
-</style>
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/organization/trainings.css') }}"
+/>
 {% endblock %} {% block content %}
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-center mb-8">Training Opportunities</h1>
@@ -126,8 +98,5 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-<script>
-  var input = document.getElementById("skillsCovered");
-  new Tagify(input);
-</script>
+<script src="{{ url_for('static', filename='scripts/organization/trainings.css') }}"></script>
 {% endblock %}

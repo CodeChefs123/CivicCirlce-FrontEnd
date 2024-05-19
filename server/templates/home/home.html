@@ -1,40 +1,9 @@
 {% extends "/home/base.html" %} {% block head %}
 <title>Home - CivicCircle</title>
-<style>
-  /* Custom CSS for Home page */
-  /* Button styles */
-  .btn-blue {
-    background-color: #2563eb;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  .btn-blue:hover {
-    background-color: #1d4ed8;
-  }
-
-  .btn-blue-inverse {
-    border: 2px solid #2563eb;
-    background-color: transparent;
-    color: #2563eb;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  }
-
-  .btn-blue-inverse:hover {
-    background-color: #2563eb;
-    color: #ffffff;
-  }
-
-  /* Testimonials section */
-  .testimonial-card {
-    background-color: #f3f4f6;
-    border-radius: 0.5rem;
-  }
-</style>
+<link
+rel="stylesheet"
+href="{{ url_for('static', filename='styles/home/home.css') }}"
+/>
 {% endblock %} {% block body %}
 <div class="container mx-auto px-4">
   <header class="text-center my-12">

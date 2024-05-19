@@ -1,0 +1,35 @@
+body {
+    padding-top: 4.5rem; /* Adjusted padding for better spacing */
+    font-family: "Arial", sans-serif; /* Changed font for better readability */
+  }
+
+  .navbar {
+    background-color: #4b5563; /* Updated navbar background color */
+  }
+
+  .navbar-brand {
+    color: #f3f4f6; /* Navbar brand text color */
+  }
+
+  .navbar-nav .nav-link {
+    color: #f3f4f6; /* Navbar link text color */
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #cbd5e0; /* Navbar link hover color */
+  }
+
+  .btn-primary {
+    background-color: #4b5563; /* Primary button background color */
+    border-color: #4b5563; /* Primary button border color */
+  }
+
+  .btn-primary:hover {
+    background-color: #2d3748; /* Primary button hover background color */
+    border-color: #2d3748; /* Primary button hover border color */
+  }
+
+  .alert {
+    border-color: #e2e8f0; /* Alert border color */
+    color: #2d3748; /* Alert text color */
+  }

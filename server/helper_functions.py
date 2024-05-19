@@ -1,9 +1,17 @@
 from server import *
+import base64
+import smtplib
+from email.mime.text import MIMEText
+from server import session
 
 
-def encode(message: str) -> bytes:
+def encode(message: str) -> str:
     """
     Encode string for privacy and encryption.
+    Args:
+        message: The string to be encoded.
+    Returns:
+        The encoded string.
     """
     msg_bytes = message.encode("latin-1")
     string_bytes = base64.b64encode(msg_bytes)
@@ -11,9 +19,13 @@ def encode(message: str) -> bytes:
     return string
 
 
-def decode(message: str) -> bytes:
+def decode(message: str) -> str:
     """
     Decode string for privacy and encryption.
+    Args:
+        message: The string to be decoded.
+    Returns:
+        The decoded string.
     """
     if not message:
         return ""
@@ -25,7 +37,13 @@ def decode(message: str) -> bytes:
 
 def send_email(subject: str, email_to: str, body: str) -> None:
     """
-    Send Emails for 2 fac auth and other notifications
+    Send Emails for 2-factor authentication and other notifications.
+    Args:
+        subject: The subject of the email.
+        email_to: The recipient's email address.
+        body: The body of the email.
+    Returns:
+        None
     """
     EmailAdd = "circlecivic@gmail.com"
     Pass = "civiccirclemindstudiociac"
@@ -44,5 +62,12 @@ def send_email(subject: str, email_to: str, body: str) -> None:
         server.sendemail(EmailAdd, email_to, msg.as_string())
 
 
-def login_verification(user_type="admin"):
+def login_verification(user_type: str = "admin") -> bool:
+    """
+    Verify user login based on user type.
+    Args:
+        user_type: The type of user to be verified. Default is "admin".
+    Returns:
+        True if the user type matches the session user type, False otherwise.
+    """
     return True if session.get("userType") == user_type else False
